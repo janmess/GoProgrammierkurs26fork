@@ -27,11 +27,20 @@ package fibonacci
 //    Fib(3) Fib(2) Fib(2) Fib(1)
 //
 // Naive rekursive Fibonacci-Berechnung wächst exponentiell.
+var calls int
 
 func Fib(n int) int {
 	// TODO:
 	// Implementiere die Definition von oben direkt.
-	return 0
+	calls++
+	if n < 1 {
+		return 0
+	}
+	if n < 2 {
+		return 1
+	}
+	return Fib(n-1) + Fib(n-2)
+
 }
 
 // Experiment 1 – Laufzeit:

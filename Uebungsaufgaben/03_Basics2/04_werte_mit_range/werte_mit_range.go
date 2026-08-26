@@ -6,9 +6,11 @@ package werte_mit_range
 // Die Funktion wird automatisch durch die zugehörige Testdatei geprüft.
 
 func CopyValues(numbers []int) []int {
-    var result []int
+	var result []int
+	for _, num := range numbers {
+		result = append(result, num)
+	}
+	// TODO: Kopiere alle Werte mit range.
 
-    // TODO: Kopiere alle Werte mit range.
-
-    return result
+	return result
 }

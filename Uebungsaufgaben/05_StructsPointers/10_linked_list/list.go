@@ -26,19 +26,38 @@ func Length(head *Node) int {
 	// TODO:
 	// current := head
 	// for current != nil { ...; current = current.Next }
-	return 0
+	current := head
+	num := 0
+	for current != nil {
+		num++
+		current = current.Next
+	}
+	return num
 }
 
 // Sum addiert alle Werte der Liste.
 func Sum(head *Node) int {
 	// TODO
-	return 0
+	sum := 0
+	current := head
+	for current != nil {
+		sum += current.Value
+		current = current.Next
+	}
+	return sum
 }
 
 // Find gibt einen Pointer auf den ERSTEN Node mit dem gesuchten Wert zurück.
 // Wenn der Wert nicht existiert, soll nil zurückgegeben werden.
 func Find(head *Node, value int) *Node {
 	// TODO
+	current := head
+	for current != nil {
+		if current.Value == value {
+			return current
+		}
+		current = current.Next
+	}
 	return nil
 }
 
@@ -49,7 +68,18 @@ func Find(head *Node, value int) *Node {
 // Ist head == nil, besteht die neue Liste nur aus dem neuen Node.
 func Append(head *Node, value int) *Node {
 	// TODO
-	return nil
+	if head == nil {
+		return &Node{
+			Value: value,
+			Next:  nil,
+		}
+	}
+	current := head
+	for current.Next != nil {
+		current = current.Next
+	}
+	current.Next = &Node{Value: value, Next: nil}
+	return head
 }
 
 // Zusatzaufgabe (ohne Test):

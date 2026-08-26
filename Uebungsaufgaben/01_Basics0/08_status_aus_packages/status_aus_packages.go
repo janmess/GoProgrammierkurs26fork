@@ -6,13 +6,15 @@ package status_aus_packages
 // Die Funktion wird automatisch durch die zugehörige Testdatei geprüft.
 
 import (
-    "fmt"
-    "strconv"
-    "strings"
+	"fmt"
+	"strconv"
+	"strings"
 )
 
 func BuildStatus(name string, number int) string {
-    // TODO: Name bearbeiten, Zahl umwandeln und Status formatieren.
-    _, _, _ = fmt.Sprintf, strconv.Itoa, strings.ToUpper
-    return ""
+	// TODO: Name bearbeiten, Zahl umwandeln und Status formatieren.
+	a := strings.ToUpper(name)
+	b := strconv.Itoa(number)
+	text := fmt.Sprintf("%s - Aufgabe %s", a, b)
+	return text
 }

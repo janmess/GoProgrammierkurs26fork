@@ -6,6 +6,9 @@ package temperatur_bewerten
 // Die Funktion wird automatisch durch die zugehörige Testdatei geprüft.
 
 func TemperatureLabel(temp int) string {
-    // TODO: Entscheide mit if/else zwischen "warm" und "kühl".
-    return ""
+	// TODO: Entscheide mit if/else zwischen "warm" und "kühl".
+	if temp > 24 {
+		return "warm"
+	}
+	return "kühl"
 }

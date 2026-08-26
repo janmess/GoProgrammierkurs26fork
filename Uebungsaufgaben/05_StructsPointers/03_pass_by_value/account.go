@@ -1,5 +1,7 @@
 package account
 
+import "fmt"
+
 // Übung 3 – Structs werden kopiert
 // Schwierigkeit: ★★☆☆☆
 //
@@ -17,13 +19,19 @@ type Account struct {
 // Erhöhe die Balance der lokalen Kopie und gib diese Kopie zurück.
 func DepositCopy(account Account, amount int) Account {
 	// TODO
-	return Account{}
+	return Account{
+		Balance: account.Balance + amount,
+	}
 }
 
 // RenameCopy soll analog nur die Kopie umbenennen und zurückgeben.
 func RenameCopy(account Account, newOwner string) Account {
 	// TODO
-	return Account{}
+	fmt.Printf("Adresse lokal: %p\n", &account)
+	return Account{
+		Owner: newOwner,
+	}
+
 }
 
 // Experiment:

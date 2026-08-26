@@ -32,6 +32,11 @@ package sum
 // Für n <= 0 soll 0 zurückgegeben werden.
 func SumTo(n int) int {
 
+	if n == 0 {
+		return n
+	}
+
+	return n + SumTo(n-1)
 	// TODO 1:
 	// Implementiere zuerst den Abbruchfall.
 	//

@@ -17,12 +17,16 @@ package addresses
 // werden. Go stellt sicher, dass der Speicher lange genug lebt.
 func PointerTo(value int) *int {
 	// TODO: return &value
-	return nil
+
+	return &value
 }
 
 // SameAddress soll true liefern, wenn beide Pointer dieselbe Adresse enthalten.
 func SameAddress(a *int, b *int) bool {
 	// TODO: Pointer können direkt mit == verglichen werden.
+	if a == b {
+		return true
+	}
 	return false
 }
 

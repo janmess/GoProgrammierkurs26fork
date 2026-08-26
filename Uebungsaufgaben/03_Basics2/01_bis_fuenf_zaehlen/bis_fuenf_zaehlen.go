@@ -6,9 +6,11 @@ package bis_fuenf_zaehlen
 // Die Funktion wird automatisch durch die zugehörige Testdatei geprüft.
 
 func CountToFive() []int {
-    var result []int
+	var result []int
+	for i := 0; i < 5; i++ {
+		result = append(result, i+1)
+	}
+	// TODO: Füge mit einer for-Schleife die Zahlen 1 bis 5 hinzu.
 
-    // TODO: Füge mit einer for-Schleife die Zahlen 1 bis 5 hinzu.
-
-    return result
+	return result
 }

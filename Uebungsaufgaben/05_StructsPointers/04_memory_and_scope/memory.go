@@ -1,5 +1,7 @@
 package memory
 
+import "unsafe"
+
 // Übung 4 – Speichergröße, Padding und Scope
 // Schwierigkeit: ★★★☆☆
 //
@@ -29,6 +31,17 @@ type SizeInfo struct {
 	Int64Size        uintptr
 	BadLayoutSize    uintptr
 	BetterLayoutSize uintptr
+	IntSize          uintptr
+	Int32Size        uintptr
+	float32Size      uintptr
+	float64Size      uintptr
+	stringSize       uintptr
+	zufallSize       uintptr
+}
+
+type zufall struct {
+	wert1 int
+	wert2 int
 }
 
 // GetSizes soll die Größen der Datentypen/Structs zurückgeben.
@@ -38,13 +51,24 @@ func GetSizes() SizeInfo {
 	//   unsafe.Sizeof(bool(false))
 	//   unsafe.Sizeof(int64(0))
 	//   unsafe.Sizeof(BadLayout{})
-	return SizeInfo{}
+	return SizeInfo{
+		BoolSize:         unsafe.Sizeof(bool(false)),
+		Int64Size:        unsafe.Sizeof(int64(0)),
+		BadLayoutSize:    unsafe.Sizeof(BadLayout{}),
+		BetterLayoutSize: unsafe.Sizeof(BetterLayout{}),
+		IntSize:          unsafe.Sizeof(BetterLayout{}),
+		Int32Size:        unsafe.Sizeof(int32(0)),
+		float32Size:      unsafe.Sizeof(float32(0)),
+		float64Size:      unsafe.Sizeof(float64(0)),
+		zufallSize:       unsafe.Sizeof(zufall{}),
+		stringSize:       unsafe.Sizeof("string"),
+	}
 }
 
 // MakeLabel demonstriert lokalen Scope.
 func MakeLabel(name string) string {
 	prefix := "Student: " // prefix existiert nur innerhalb dieser Funktion.
-
+	prefix += name
 	// TODO: Gib prefix + name zurück.
 	return prefix // Starterwert: kompiliert, ist aber noch nicht korrekt.
 }

@@ -6,6 +6,8 @@ package gerade_oder_ungerade
 // Die Funktion wird automatisch durch die zugehörige Testdatei geprüft.
 
 func IsEven(number int) bool {
-    // TODO: Prüfe, ob number gerade ist.
-    return false
+	if number%2 == 0 {
+		return true
+	}
+	return false
 }

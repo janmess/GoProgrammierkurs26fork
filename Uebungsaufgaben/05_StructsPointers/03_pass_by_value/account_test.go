@@ -1,6 +1,9 @@
 package account
 
-import "testing"
+import (
+	"fmt"
+	"testing"
+)
 
 func TestDepositCopy(t *testing.T) {
 	original := Account{Owner: "Ada", Balance: 100}
@@ -17,6 +20,8 @@ func TestDepositCopy(t *testing.T) {
 func TestRenameCopy(t *testing.T) {
 	original := Account{Owner: "Ada", Balance: 100}
 	changed := RenameCopy(original, "Grace")
+
+	fmt.Printf("Adresse original: %p\n", &original)
 
 	if changed.Owner != "Grace" {
 		t.Errorf("changed.Owner = %q, want Grace", changed.Owner)

@@ -10,17 +10,20 @@ package dereference
 
 // Read soll den Wert lesen, auf den p zeigt.
 func Read(p *int) int {
+
 	// TODO: return *p
-	return 0
+	return *p
 }
 
 // Write soll den Wert an der Adresse p auf newValue setzen.
 func Write(p *int, newValue int) {
 	// TODO: *p = newValue
+	*p = newValue
 }
 
 // Add soll delta zum Wert addieren, auf den p zeigt.
 func Add(p *int, delta int) {
+	*p += delta
 	// TODO
 }
 

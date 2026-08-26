@@ -27,7 +27,7 @@ import "fmt"
 
 func main() {
 	// Ändert diese Zahl, um eine andere Aufgabe zu starten.
-	exercise := 1
+	exercise := 11
 
 	switch exercise {
 	case 1:
@@ -112,6 +112,15 @@ func main() {
 // Danach soll die neue Anzahl ausgegeben werden.
 
 func aufgabe01() {
+	apples := 5
+	name := "Otto"
+	fmt.Println("Hallo", name+"!")
+	fmt.Println("Du hast", apples, "Äpfel.")
+	apples = apples + 5
+	fmt.Println("Nach dem Einkauf hast du", apples, "Äpfel.")
+	apples = apples - 1
+	fmt.Println("Du hast einen Apfel gegessen. Jetzt hast du", apples, "Äpfel.")
+
 	// TODO:
 	// Kopiert die Code-Schnipsel von oben hier hinein
 	// und bringt sie in die richtige Reihenfolge.
@@ -142,6 +151,8 @@ func aufgabe02() {
 
 	fmt.Println(x + y)
 	fmt.Println("x + y")
+	fmt.Println(x * y)
+	fmt.Println(x - y)
 }
 
 // ============================================================
@@ -161,11 +172,13 @@ func aufgabe02() {
 // und gebt auch euren Wohn- oder Studienort aus.
 
 func aufgabe03() {
-	name := "Max"
-	alter := 18
+	name := "Jan"
+	alter := 20
+	stadt := "Mingolsheim"
 
 	fmt.Println("Hallo", name)
 	fmt.Println("Du bist", alter, "Jahre alt.")
+	fmt.Println("Du wohnst in", stadt)
 
 	// TODO: Alter im nächsten Jahr ausgeben
 	// TODO: Alter in 10 Jahren ausgeben
@@ -196,9 +209,12 @@ func aufgabe03() {
 
 func aufgabe04() {
 	apples := 5
-	apples = apples + 2
+	apples = apples + 10
+	bananas := 10
+	bananas += 20
+	obst := bananas + apples
 
-	fmt.Println("Äpfel:", apples)
+	fmt.Println("Äpfel:", apples, "Bananen:", bananas, "Früchte:", obst)
 }
 
 // ============================================================
@@ -239,7 +255,15 @@ func aufgabe04() {
 
 func aufgabe05() {
 	fmt.Println("Bug Hunt!")
+	fmt.Println("Bug Hunt!")
+	fmt.Println("Hallo Welt!")
+	x := 5
+	x = 10
+	fmt.Println(x)
+	fmt.Println("Hallo")
+	fmt.Println("Welt")
 
+	// fmt.Println(x)
 	// Kopiert hier jeweils EINEN kaputten Schnipsel hinein.
 }
 
@@ -268,7 +292,7 @@ func aufgabe06() {
 	x := 3
 	x = x + 2
 	x = x * 4
-	x = x - 5
+	x = x + 22
 
 	fmt.Println("x =", x)
 }
@@ -300,13 +324,17 @@ func aufgabe06() {
 // Ihr könnt dafür nach "Go else if" suchen oder experimentieren.
 
 func aufgabe07() {
-	alter := 18
+	alter := 12
 
 	if alter >= 18 {
 		fmt.Println("Du bist volljährig.")
 	} else {
 		fmt.Println("Du bist noch nicht volljährig.")
+		if alter < 16 {
+			fmt.Println("Du bist noch keine 16")
+		}
 	}
+
 }
 
 // ============================================================
@@ -334,15 +362,16 @@ func aufgabe07() {
 // Könnt ihr auch prüfen, ob eine Zahl negativ ist?
 
 func aufgabe08() {
-	number := 7
+	number := 4
 
 	if number > 5 {
 		fmt.Println("Die Zahl ist groß!")
+	} else if number == 5 {
+		fmt.Println("Die Zahl ist gleich 5!")
 	} else {
-		fmt.Println("Die Zahl ist klein oder gleich 5!")
+		fmt.Println("Die Zahl ist kleiner als 5!")
+		// TODO: Genau 5 getrennt behandeln
 	}
-
-	// TODO: Genau 5 getrennt behandeln
 }
 
 // ============================================================
@@ -367,8 +396,11 @@ func aufgabe08() {
 // ausgeben.
 
 func aufgabe09() {
-	for i := 0; i < 5; i++ {
-		fmt.Println(i)
+	for i := 0; i < 200; i++ {
+		if i%10 == 0 {
+			fmt.Println(i)
+		}
+
 	}
 }
 
@@ -403,9 +435,17 @@ func aufgabe09() {
 // - Alter kleiner als 18
 
 func aufgabe10() {
-	// TODO: Baut hier euer Programm.
+	name := "Thomas"
+	alter := 20
+	inzehn := alter + 10
 
-	fmt.Println("Code-Lego: Baut euer eigenes Programm!")
+	fmt.Println("Hallo, ich heiße", name, ". Ich bin", alter, "Jahre alt. In 10 Jahren bin ich", inzehn, "Jahre alt.")
+	if alter >= 18 {
+		fmt.Println("Ich bin volljährig")
+	} else {
+		fmt.Println("Ich bin nicht volljährig")
+	}
+
 }
 
 // ============================================================
@@ -456,5 +496,14 @@ func aufgabe10() {
 func aufgabe11() {
 	fmt.Println("Freie Mini-Challenge!")
 
+	alter := 20
+	in := 2
+	alterin := alterin(alter, 2)
+
+	fmt.Println("Ich bin", alter, "Jahre alt. In", in, "Jahren bin ich", alterin, "Jahre alt.")
 	// TODO: Euer eigenes Programm beginnt hier.
+}
+
+func alterin(alter int, zahl int) int {
+	return alter + zahl
 }

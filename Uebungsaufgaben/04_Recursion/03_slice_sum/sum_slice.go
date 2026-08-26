@@ -28,8 +28,11 @@ func SumSlice(numbers []int) int {
 
 	// TODO 2:
 	// Addiere das erste Element zum Ergebnis des restlichen Slices.
+	if len(numbers) == 0 {
+		return 0
+	}
+	return SumSlice(numbers[1:]) + numbers[0]
 
-	return 0
 }
 
 // Experiment:

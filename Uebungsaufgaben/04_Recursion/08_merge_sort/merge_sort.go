@@ -28,17 +28,23 @@ package mergesort
 func MergeSort(numbers []int) []int {
 	// TODO 1:
 	// Abbruchfall bestimmen.
+	if len(numbers) < 2 {
+		return numbers
+	}
+
+	middle := len(numbers) / 2
 
 	// TODO 2:
 	// Slice in zwei Hälften teilen.
-
+	left := MergeSort(numbers[:middle])
+	right := MergeSort(numbers[middle:])
 	// TODO 3:
 	// Beide Hälften rekursiv sortieren.
 
 	// TODO 4:
 	// Die sortierten Hälften mit merge() verbinden.
+	return merge(left, right)
 
-	return nil
 }
 
 // merge verbindet zwei bereits sortierte Slices.
