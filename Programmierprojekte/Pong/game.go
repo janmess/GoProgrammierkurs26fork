@@ -162,7 +162,7 @@ func HasPaddleCollision(ball Ball, paddle Paddle) bool {
 	untenuerberlappt := ball.Position.Y-ball.Radius <= paddle.Position.Y+paddle.Height/2
 
 	if rechtsueberlappt && obenueberlappt && linksueberlappt && untenuerberlappt {
-		IncreaseBallSpeed(&ball, 7)
+		IncreaseBallSpeed(&ball, 10)
 		return true
 	}
 	return false
