@@ -21,7 +21,8 @@ package main
 //
 //	Velocity = (5.5, 2.2)
 func IncreaseBallSpeed(ball *Ball, factor float64) {
-	// TODO (Bonus)
+	ball.Velocity.X *= 2
+	ball.Velocity.Y *= 2
 }
 
 // BONUS 2 - Einfache Computersteuerung
