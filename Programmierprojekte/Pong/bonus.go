@@ -21,8 +21,8 @@ package main
 //
 //	Velocity = (5.5, 2.2)
 func IncreaseBallSpeed(ball *Ball, factor float64) {
-	ball.Velocity.X *= 2
-	ball.Velocity.Y *= 2
+	ball.Velocity.X *= factor
+	ball.Velocity.Y *= factor
 }
 
 // BONUS 2 - Einfache Computersteuerung
@@ -39,5 +39,12 @@ func IncreaseBallSpeed(ball *Ball, factor float64) {
 // Überlege dir selbst, wie groß der Bereich sein soll, in dem der
 // Computer nicht reagiert. So verhinderst du permanentes Zittern.
 func MoveComputerPaddle(paddle *Paddle, ball Ball, fieldHeight float64) {
-	// TODO (Bonus)
+	const deadzone = 45
+	if ball.Position.Y < paddle.Position.Y-deadzone {
+		MovePaddle(paddle, -1, fieldHeight)
+	}
+	if ball.Position.Y > paddle.Position.Y+deadzone {
+		MovePaddle(paddle, 1, fieldHeight)
+	}
+
 }

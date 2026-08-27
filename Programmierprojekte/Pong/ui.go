@@ -135,15 +135,14 @@ func (g *PongGame) Update() error {
 
 	MoveBall(&g.Ball)
 	BounceOffHorizontalWalls(&g.Ball, FieldHeight)
+	MoveComputerPaddle(&g.LeftPaddle, g.Ball, FieldHeight)
 
 	if g.Ball.Velocity.X < 0 && HasPaddleCollision(g.Ball, g.LeftPaddle) {
 		BounceFromPaddle(&g.Ball, g.LeftPaddle)
-		IncreaseBallSpeed(&g.Ball, 1.1)
 	}
 
 	if g.Ball.Velocity.X > 0 && HasPaddleCollision(g.Ball, g.RightPaddle) {
 		BounceFromPaddle(&g.Ball, g.RightPaddle)
-		IncreaseBallSpeed(&g.Ball, 1.1)
 	}
 
 	scoringPlayer := DetectScore(g.Ball, FieldWidth)
