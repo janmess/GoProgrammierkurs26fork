@@ -77,7 +77,14 @@ const (
 //
 //	Wir wollen die Position des vorhandenen Paddle verändern.
 func MovePaddle(paddle *Paddle, direction float64, fieldHeight float64) {
-	// TODO: Implementiere diese Funktion.
+	// bewegung nach oben
+	if direction == -1 && paddle.Position.Y-(paddle.Height/2)-5 > 0 {
+		paddle.Position.Y -= paddle.Speed
+	}
+	// bewegung nach unten
+	if direction == 1 && paddle.Position.Y+(paddle.Height/2)+5 < fieldHeight {
+		paddle.Position.Y += paddle.Speed
+	}
 }
 
 // ============================================================
@@ -97,7 +104,8 @@ func MovePaddle(paddle *Paddle, direction float64, fieldHeight float64) {
 //
 //	Position = (105, 198)
 func MoveBall(ball *Ball) {
-	// TODO: Implementiere diese Funktion.
+	ball.Position.X += ball.Velocity.X
+	ball.Position.Y += ball.Velocity.Y
 }
 
 // ============================================================
@@ -115,7 +123,16 @@ func MoveBall(ball *Ball) {
 //
 // Das Spielfeld geht in Y-Richtung von 0 bis fieldHeight.
 func BounceOffHorizontalWalls(ball *Ball, fieldHeight float64) bool {
-	// TODO: Implementiere diese Funktion.
+	if ball.Position.Y-ball.Radius < 0 {
+		ball.Position.Y = ball.Radius
+		ball.Velocity.Y = -ball.Velocity.Y
+		return true
+	}
+	if ball.Position.Y+ball.Radius > fieldHeight {
+		ball.Position.Y = fieldHeight - ball.Radius
+		ball.Velocity.Y = -ball.Velocity.Y
+		return true
+	}
 	return false
 }
 
@@ -138,8 +155,13 @@ func BounceOffHorizontalWalls(ball *Ball, fieldHeight float64) bool {
 // Zwei Rechtecke überlappen sich, wenn sie sich sowohl horizontal
 // als auch vertikal überschneiden.
 func HasPaddleCollision(ball Ball, paddle Paddle) bool {
-	// TODO: Implementiere diese Funktion.
-	return false
+	//Überlappen aus sicht des schlägers
+	rechtsueberlappt := ball.Position.X-ball.Radius <= paddle.Position.X+paddle.Width/2
+	linksueberlappt := ball.Position.X+ball.Radius >= paddle.Position.X-paddle.Width/2
+	obenueberlappt := ball.Position.Y+ball.Radius >= paddle.Position.Y-paddle.Height/2
+	untenuerberlappt := ball.Position.Y-ball.Radius <= paddle.Position.Y+paddle.Height/2
+
+	return rechtsueberlappt && obenueberlappt && linksueberlappt && untenuerberlappt
 }
 
 // ============================================================
@@ -166,7 +188,12 @@ func HasPaddleCollision(ball Ball, paddle Paddle) bool {
 // Damit bleibt die Mathematik überschaubar und das Spiel fühlt sich
 // trotzdem deutlich besser an.
 func BounceFromPaddle(ball *Ball, paddle Paddle) {
-	// TODO: Implementiere diese Funktion.
+	if HasPaddleCollision(*ball, paddle) {
+		ball.Velocity.X = -ball.Velocity.X
+		relativeHit := (ball.Position.Y - paddle.Position.Y) / (paddle.Height / 2)
+		ball.Velocity.Y += relativeHit * 2.0
+	}
+
 }
 
 // ============================================================
@@ -184,6 +211,11 @@ func BounceFromPaddle(ball *Ball, paddle Paddle) {
 //
 // Das Spielfeld geht in X-Richtung von 0 bis fieldWidth.
 func DetectScore(ball Ball, fieldWidth float64) ScoringPlayer {
-	// TODO: Implementiere diese Funktion.
+	if ball.Position.X < 0 {
+		return RightPlayer
+	}
+	if ball.Position.X > fieldWidth {
+		return LeftPlayer
+	}
 	return NoScore
 }

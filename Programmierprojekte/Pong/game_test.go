@@ -22,16 +22,16 @@ func TestMovePaddleMovesUpAndDown(t *testing.T) {
 
 func TestMovePaddleStaysInsideField(t *testing.T) {
 	paddle := Paddle{
-		Position: Vector{X: 30, Y: 31},
+		Position: Vector{X: 30, Y: 30},
 		Width:    14,
 		Height:   60,
-		Speed:    10,
+		Speed:    30,
 	}
 
 	MovePaddle(&paddle, -1, 300)
 	assertFloatEquals(t, paddle.Position.Y, 30)
 
-	paddle.Position.Y = 269
+	paddle.Position.Y = 270
 	MovePaddle(&paddle, 1, 300)
 	assertFloatEquals(t, paddle.Position.Y, 270)
 }
@@ -51,7 +51,7 @@ func TestMoveBallUsesVelocity(t *testing.T) {
 
 func TestBounceOffTopWall(t *testing.T) {
 	ball := Ball{
-		Position: Vector{X: 100, Y: 5},
+		Position: Vector{X: 100, Y: -1},
 		Velocity: Vector{X: 4, Y: -3},
 		Radius:   8,
 	}
@@ -67,7 +67,7 @@ func TestBounceOffTopWall(t *testing.T) {
 
 func TestBounceOffBottomWall(t *testing.T) {
 	ball := Ball{
-		Position: Vector{X: 100, Y: 296},
+		Position: Vector{X: 100, Y: 301},
 		Velocity: Vector{X: 4, Y: 3},
 		Radius:   8,
 	}
